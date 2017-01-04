@@ -1,4 +1,4 @@
-package com.example.david.myrecipes.main.ui;
+package com.example.david.myrecipes.recipeMain.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
