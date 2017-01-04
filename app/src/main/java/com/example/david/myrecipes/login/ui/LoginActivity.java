@@ -6,14 +6,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 
-import com.example.david.myrecipes.FacebookRecipesApp;
 import com.example.david.myrecipes.R;
-import com.example.david.myrecipes.main.ui.RecipeMainActivity;
+import com.example.david.myrecipes.recipeMain.ui.RecipeMainActivity;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
