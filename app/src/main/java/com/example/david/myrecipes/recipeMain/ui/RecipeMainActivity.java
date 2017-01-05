@@ -1,17 +1,22 @@
 package com.example.david.myrecipes.recipeMain.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import com.example.david.myrecipes.FacebookRecipesApp;
 import com.example.david.myrecipes.R;
 import com.example.david.myrecipes.entities.Recipe;
 import com.example.david.myrecipes.libs.base.ImageLoader;
+import com.example.david.myrecipes.recipeList.RecipeListActivity;
 import com.example.david.myrecipes.recipeMain.RecipeMainPresenter;
 
 import butterknife.Bind;
@@ -43,6 +48,39 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
         setupInjection();
         presenter.onCreate();
         presenter.getNextRecipe();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_recipes_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.action_logout:
+                logout();
+                break;
+            case R.id.action_list:
+                navigateToListScreen();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void navigateToListScreen() {
+        Intent intent = new Intent(this, RecipeListActivity.class);
+        startActivity(intent);
+    }
+
+    private void logout() {
+        FacebookRecipesApp app = (FacebookRecipesApp)getApplication();
+        app.logout();
     }
 
     @Override

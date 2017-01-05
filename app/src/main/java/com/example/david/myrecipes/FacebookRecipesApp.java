@@ -1,8 +1,11 @@
 package com.example.david.myrecipes;
 
 import android.app.Application;
+import android.content.Intent;
 
+import com.example.david.myrecipes.login.ui.LoginActivity;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
 /**
@@ -34,5 +37,14 @@ public class FacebookRecipesApp extends Application {
 
     private void initFacebook() {
         FacebookSdk.sdkInitialize(this);
+    }
+
+    public void logout() {
+        LoginManager.getInstance().logOut();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
