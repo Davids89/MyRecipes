@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.david.myrecipes.FacebookRecipesApp;
 import com.example.david.myrecipes.R;
 import com.example.david.myrecipes.entities.Recipe;
@@ -46,8 +48,27 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setupInjection();
+        setupImageLoader();
         presenter.onCreate();
         presenter.getNextRecipe();
+    }
+
+    private void setupImageLoader() {
+        RequestListener glideRequestListener = new RequestListener() {
+            @Override
+            public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
+                presenter.imageError(e.getLocalizedMessage());
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
+                presenter.imageReady();
+                return false;
+            }
+        };
+
+        //imageLoader.setOnFinishedImageLoadingListener(glideRequestListener);
     }
 
     @Override
@@ -133,7 +154,7 @@ public class RecipeMainActivity extends AppCompatActivity implements RecipeMainV
     }
 
     @Override
-    public void DismissAnimation() {
+    public void dismissAnimation() {
 
     }
 

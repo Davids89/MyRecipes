@@ -12,7 +12,7 @@ public interface RecipeMainView {
     void showUIElements();
     void hideUIElements();
     void saveAnimation();
-    void DismissAnimation();
+    void dismissAnimation();
 
     void onRecipeSaved();
     void setRecipe(Recipe recipe);
